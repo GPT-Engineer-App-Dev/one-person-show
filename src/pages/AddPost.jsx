@@ -8,8 +8,10 @@ const AddPost = () => {
 
   const handleSubmit = () => {
     if (title && content) {
-      // Here you would typically send the data to a server
-      console.log("New Post:", { title, content });
+      const newPost = { title, content };
+      const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
+      storedPosts.push(newPost);
+      localStorage.setItem("posts", JSON.stringify(storedPosts));
       toast({
         title: "Post added.",
         description: "Your new blog post has been added.",
